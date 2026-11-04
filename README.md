@@ -1,3 +1,5 @@
+> May be deleted when [software-mansion/react-native-screens#5137](https://github.com/software-mansion/react-native-screens/issues/5137) is no longer open.
+
 # react-native-screens: wrong status bar style on cold launch
 
 On RN 0.88 with `UIViewControllerBasedStatusBarAppearance = YES` (the template default), the status bar style should come from `RCTStatusBarAppearance`, which JS `<StatusBar>` sets. react-native-screens swizzles `childViewControllerForStatusBarStyle/Hidden` on every `UIViewController`, so UIKit asks the top `RNSScreen` instead. With no `statusBarStyle` set, that screen answers `Auto`, and `Auto` resolves against `UITraitCollection.currentTraitCollection`. On a cold launch that is the system theme, not the window's `overrideUserInterfaceStyle` (forced light here by `Appearance.setColorScheme('light')`).
